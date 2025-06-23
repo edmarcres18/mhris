@@ -273,3 +273,226 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 Made with ❤️ by MHR-IT
+
+# MHRIS - Production Deployment Guide
+
+This guide provides detailed instructions for deploying the MHRIS application to an Ubuntu production server using Docker.
+
+## Prerequisites
+
+- Ubuntu Server 20.04 LTS or later
+- Root access to the server
+- Domain name pointed to your server (for production)
+- Basic knowledge of Linux, Docker, and Laravel
+
+## Server Requirements
+
+- Minimum 2GB RAM (4GB recommended)
+- 2 CPU cores (4 recommended)
+- 20GB disk space (SSD preferred)
+- Stable internet connection
+
+## Deployment Steps
+
+### 1. Prepare Your Server
+
+Ensure your server is up-to-date:
+
+```bash
+sudo apt update
+sudo apt upgrade -y
+```
+
+Install required packages:
+
+```bash
+sudo apt install -y git curl zip unzip
+```
+
+### 2. Clone the Repository
+
+```bash
+cd /tmp
+git clone https://your-repository-url.git mhris
+```
+
+### 3. Run the Deployment Script
+
+Our deployment script automates most of the setup process:
+
+```bash
+cd /tmp/mhris
+chmod +x deploy.sh
+sudo ./deploy.sh production
+```
+
+The script will:
+- Install Docker and Docker Compose if not present
+- Create required directories
+- Backup existing data if applicable
+- Configure SSL certificates
+- Set proper file permissions
+- Build and start Docker containers
+
+### 4. Configure Environment Variables
+
+After running the deployment script, you need to configure your environment variables:
+
+```bash
+sudo nano /var/www/mhris/.env.production
+```
+
+Update the following values:
+- `APP_URL`: Your production domain
+- `DB_PASSWORD` and `DB_ROOT_PASSWORD`: Strong database passwords
+- Email configuration for your production mail server
+- Any other application-specific settings
+
+### 5. Restart the Application
+
+After updating your environment variables:
+
+```bash
+cd /var/www/mhris
+sudo docker-compose down
+sudo docker-compose up -d
+```
+
+### 6. Set Up SSL with Let's Encrypt (For Production)
+
+Replace the self-signed certificate with a Let's Encrypt certificate:
+
+```bash
+sudo apt install -y certbot
+sudo certbot certonly --standalone -d yourdomain.com -d www.yourdomain.com
+```
+
+Copy the certificates to the Docker volume:
+
+```bash
+sudo cp /etc/letsencrypt/live/yourdomain.com/fullchain.pem /var/www/mhris/docker/nginx/ssl/mhris.crt
+sudo cp /etc/letsencrypt/live/yourdomain.com/privkey.pem /var/www/mhris/docker/nginx/ssl/mhris.key
+```
+
+Restart Nginx:
+
+```bash
+sudo docker-compose restart nginx
+```
+
+### 7. Set Up Automatic Backups
+
+Create a backup script:
+
+```bash
+sudo nano /usr/local/bin/backup-mhris.sh
+```
+
+Add the following content:
+
+```bash
+#!/bin/bash
+TIMESTAMP=$(date +%Y%m%d%H%M%S)
+BACKUP_DIR="/var/backups/mhris"
+mkdir -p $BACKUP_DIR/db
+mkdir -p $BACKUP_DIR/code
+
+# Backup database
+docker exec mhris_db mysqldump -u root -p$(grep DB_ROOT_PASSWORD /var/www/mhris/.env.production | cut -d= -f2) --all-databases > $BACKUP_DIR/db/backup_$TIMESTAMP.sql
+
+# Backup code
+tar -czf $BACKUP_DIR/code/backup_$TIMESTAMP.tar.gz -C /var/www/mhris .
+
+# Remove backups older than 7 days
+find $BACKUP_DIR -type f -name "backup_*" -mtime +7 -delete
+```
+
+Make it executable:
+
+```bash
+sudo chmod +x /usr/local/bin/backup-mhris.sh
+```
+
+Add it to crontab:
+
+```bash
+sudo crontab -e
+```
+
+Add this line for daily backups at 2 AM:
+
+```
+0 2 * * * /usr/local/bin/backup-mhris.sh
+```
+
+## Maintenance
+
+### Monitoring Logs
+
+```bash
+cd /var/www/mhris
+sudo docker-compose logs -f
+```
+
+### Updating the Application
+
+1. Pull the latest changes:
+```bash
+cd /var/www/mhris
+git pull origin main
+```
+
+2. Redeploy:
+```bash
+sudo ./deploy.sh production
+```
+
+### Database Management
+
+To access the MySQL database directly:
+
+```bash
+sudo docker exec -it mhris_db mysql -u root -p
+```
+
+## Troubleshooting
+
+### Container not starting
+
+Check logs:
+```bash
+sudo docker-compose logs app
+```
+
+### Database connection issues
+
+Verify environment variables and network configuration:
+```bash
+sudo docker exec mhris_app php artisan env
+```
+
+### Performance issues
+
+Monitor resource usage:
+```bash
+sudo docker stats
+```
+
+## Security Recommendations
+
+1. Enable UFW firewall:
+```bash
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
+```
+
+2. Set up fail2ban to prevent brute force attacks
+3. Regularly update your server and application
+4. Use strong passwords for all services
+5. Consider setting up a WAF (Web Application Firewall)
+
+## Support
+
+For additional support, please contact your system administrator or open an issue in the project repository.
