@@ -1,0 +1,154 @@
+/* Responsive Dropdown Styles
+   -------------------------------------------------- */
+
+/* General dropdown responsiveness */
+.dropdown-menu {
+  position: absolute;
+  width: 100%;
+  min-width: 250px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 0.5rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767.98px) {
+  .dropdown-menu {
+    position: fixed !important;
+    top: auto !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 60vh !important;
+    margin: 0 !important;
+    bottom: 0 !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 -0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 1rem !important;
+    border-top-right-radius: 1rem !important;
+    padding-bottom: env(safe-area-inset-bottom) !important;
+    z-index: 1050 !important;
+    animation: slide-up 0.3s ease-out !important;
+  }
+  
+  /* User menu specific styles */
+  .user-menu .dropdown-menu {
+    max-height: 75vh !important;
+  }
+  
+  /* Notifications dropdown styles */
+  .notifications-dropdown {
+    width: 100% !important;
+  }
+  
+  /* Add pull indicator for mobile */
+  .dropdown-menu::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    margin: 8px auto;
+  }
+  
+  /* Animation for mobile dropdown */
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Cancel animation for reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .dropdown-menu {
+      animation: none !important;
+    }
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .dropdown-menu {
+    min-width: 280px;
+    max-width: 350px;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 992px) {
+  .dropdown-menu {
+    transform-origin: top right;
+    animation: scale-in 0.2s ease-out;
+  }
+  
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+/* Specific dropdown fixes */
+.navbar-nav .dropdown-item {
+  padding: 0.75rem 1.25rem;
+  white-space: normal;
+}
+
+/* Make sure all dropdowns respect safe areas */
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+/* Fix long items in dropdown menus */
+.dropdown-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Custom scrollbar for dropdown items */
+.dropdown-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+/* Dark mode support */
+.dark-mode .dropdown-menu {
+  background-color: #343a40;
+  border-color: #6c757d;
+}
+
+.dark-mode .dropdown-menu::before {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .dropdown-menu::-webkit-scrollbar-track {
+  background: #2c3136;
+}
+
+.dark-mode .dropdown-menu::-webkit-scrollbar-thumb {
+  background: #6c757d;
+} 
