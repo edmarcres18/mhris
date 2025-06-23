@@ -12,12 +12,13 @@ class CelebrantsController extends Controller
     {
         $today = now()->format('m-d');
         $celebrants = Employee::whereRaw("DATE_FORMAT(birth_date, '%m-%d') = ?", [$today])
-            ->select('first_name', 'last_name', 'department', 'profile_picture')
+            ->select('first_name', 'last_name', 'department_id', 'profile_picture')
+            ->with('department')
             ->get()
             ->map(function ($employee) {
                 return [
                     'name' => $employee->first_name . ' ' . $employee->last_name,
-                    'department' => $employee->department,
+                    'department' => $employee->department ? $employee->department->name : null,
                     'profile_picture' => $employee->profile_picture ? asset($employee->profile_picture) : null
                 ];
             });
