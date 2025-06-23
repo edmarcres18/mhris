@@ -1,0 +1,330 @@
+[
+  {
+    "id": 1,
+    "name": "Metro Manila"
+  },
+  {
+    "id": 2,
+    "name": "Ilocos Norte"
+  },
+  {
+    "id": 3,
+    "name": "Ilocos Sur"
+  },
+  {
+    "id": 4,
+    "name": "La Union"
+  },
+  {
+    "id": 5,
+    "name": "Pangasinan"
+  },
+  {
+    "id": 6,
+    "name": "Batanes"
+  },
+  {
+    "id": 7,
+    "name": "Cagayan"
+  },
+  {
+    "id": 8,
+    "name": "Isabela"
+  },
+  {
+    "id": 9,
+    "name": "Nueva Vizcaya"
+  },
+  {
+    "id": 10,
+    "name": "Quirino"
+  },
+  {
+    "id": 11,
+    "name": "Bataan"
+  },
+  {
+    "id": 12,
+    "name": "Bulacan"
+  },
+  {
+    "id": 13,
+    "name": "Nueva Ecija"
+  },
+  {
+    "id": 14,
+    "name": "Pampanga"
+  },
+  {
+    "id": 15,
+    "name": "Tarlac"
+  },
+  {
+    "id": 16,
+    "name": "Zambales"
+  },
+  {
+    "id": 17,
+    "name": "Aurora"
+  },
+  {
+    "id": 18,
+    "name": "Batangas"
+  },
+  {
+    "id": 19,
+    "name": "Cavite"
+  },
+  {
+    "id": 20,
+    "name": "Laguna"
+  },
+  {
+    "id": 21,
+    "name": "Quezon"
+  },
+  {
+    "id": 22,
+    "name": "Rizal"
+  },
+  {
+    "id": 23,
+    "name": "Marinduque"
+  },
+  {
+    "id": 24,
+    "name": "Occidental Mindoro"
+  },
+  {
+    "id": 25,
+    "name": "Oriental Mindoro"
+  },
+  {
+    "id": 26,
+    "name": "Palawan"
+  },
+  {
+    "id": 27,
+    "name": "Romblon"
+  },
+  {
+    "id": 28,
+    "name": "Albay"
+  },
+  {
+    "id": 29,
+    "name": "Camarines Norte"
+  },
+  {
+    "id": 30,
+    "name": "Camarines Sur"
+  },
+  {
+    "id": 31,
+    "name": "Catanduanes"
+  },
+  {
+    "id": 32,
+    "name": "Masbate"
+  },
+  {
+    "id": 33,
+    "name": "Sorsogon"
+  },
+  {
+    "id": 34,
+    "name": "Aklan"
+  },
+  {
+    "id": 35,
+    "name": "Antique"
+  },
+  {
+    "id": 36,
+    "name": "Capiz"
+  },
+  {
+    "id": 37,
+    "name": "Iloilo"
+  },
+  {
+    "id": 38,
+    "name": "Negros Occidental"
+  },
+  {
+    "id": 39,
+    "name": "Guimaras"
+  },
+  {
+    "id": 40,
+    "name": "Bohol"
+  },
+  {
+    "id": 41,
+    "name": "Cebu"
+  },
+  {
+    "id": 42,
+    "name": "Negros Oriental"
+  },
+  {
+    "id": 43,
+    "name": "Siquijor"
+  },
+  {
+    "id": 44,
+    "name": "Eastern Samar"
+  },
+  {
+    "id": 45,
+    "name": "Leyte"
+  },
+  {
+    "id": 46,
+    "name": "Northern Samar"
+  },
+  {
+    "id": 47,
+    "name": "Samar"
+  },
+  {
+    "id": 48,
+    "name": "Southern Leyte"
+  },
+  {
+    "id": 49,
+    "name": "Biliran"
+  },
+  {
+    "id": 50,
+    "name": "Zamboanga del Norte"
+  },
+  {
+    "id": 51,
+    "name": "Zamboanga del Sur"
+  },
+  {
+    "id": 52,
+    "name": "Zamboanga Sibugay"
+  },
+  {
+    "id": 53,
+    "name": "Bukidnon"
+  },
+  {
+    "id": 54,
+    "name": "Camiguin"
+  },
+  {
+    "id": 55,
+    "name": "Lanao del Norte"
+  },
+  {
+    "id": 56,
+    "name": "Misamis Occidental"
+  },
+  {
+    "id": 57,
+    "name": "Misamis Oriental"
+  },
+  {
+    "id": 58,
+    "name": "Davao del Norte"
+  },
+  {
+    "id": 59,
+    "name": "Davao del Sur"
+  },
+  {
+    "id": 60,
+    "name": "Davao Oriental"
+  },
+  {
+    "id": 61,
+    "name": "Davao de Oro"
+  },
+  {
+    "id": 62,
+    "name": "Davao Occidental"
+  },
+  {
+    "id": 63,
+    "name": "Cotabato"
+  },
+  {
+    "id": 64,
+    "name": "South Cotabato"
+  },
+  {
+    "id": 65,
+    "name": "Sultan Kudarat"
+  },
+  {
+    "id": 66,
+    "name": "Sarangani"
+  },
+  {
+    "id": 67,
+    "name": "Abra"
+  },
+  {
+    "id": 68,
+    "name": "Benguet"
+  },
+  {
+    "id": 69,
+    "name": "Ifugao"
+  },
+  {
+    "id": 70,
+    "name": "Kalinga"
+  },
+  {
+    "id": 71,
+    "name": "Mountain Province"
+  },
+  {
+    "id": 72,
+    "name": "Apayao"
+  },
+  {
+    "id": 73,
+    "name": "Basilan"
+  },
+  {
+    "id": 74,
+    "name": "Lanao del Sur"
+  },
+  {
+    "id": 75,
+    "name": "Maguindanao"
+  },
+  {
+    "id": 76,
+    "name": "Sulu"
+  },
+  {
+    "id": 77,
+    "name": "Tawi-Tawi"
+  },
+  {
+    "id": 78,
+    "name": "Agusan del Norte"
+  },
+  {
+    "id": 79,
+    "name": "Agusan del Sur"
+  },
+  {
+    "id": 80,
+    "name": "Surigao del Norte"
+  },
+  {
+    "id": 81,
+    "name": "Surigao del Sur"
+  },
+  {
+    "id": 82,
+    "name": "Dinagat Islands"
+  }
+]
